@@ -91,7 +91,7 @@ export function EditTorrent(props: ModalState) {
                 onError: (e) => {
                     console.error("Failed to update torrent properties", e);
                     notifications.show({
-                        message: "Error updating torrent",
+                        message: "Ошибка обновления торрента",
                         color: "red",
                     });
                 },
@@ -107,7 +107,7 @@ export function EditTorrent(props: ModalState) {
             onClose={props.close}
             onSave={onSave}
             centered
-            title="Edit torrent properties"
+            title="Свойства торрента"
             mih="25rem"
         >
             <LoadingOverlay visible={isLoading} />
@@ -117,18 +117,18 @@ export function EditTorrent(props: ModalState) {
                 </Grid.Col>
                 <Grid.Col span={8}>
                     <Checkbox my="sm"
-                        label="Honor session upload limit"
+                        label="Использовать глобальные лимиты скорости"
                         {...form.getInputProps("honorsSessionLimits", { type: "checkbox" })} />
                 </Grid.Col>
                 <Grid.Col span={4}>
                     {rpcVersion >= 18 &&
                         <Checkbox my="sm"
-                            label="Sequential download"
+                            label="Последовательная загрузка"
                             {...form.getInputProps("sequentialDownload", { type: "checkbox" })} />}
                 </Grid.Col>
                 <Grid.Col span={8}>
                     <Checkbox
-                        label="Maximum download speed"
+                        label="Максимальная скорость загрузки"
                         {...form.getInputProps("downloadLimited", { type: "checkbox" })} />
                 </Grid.Col>
                 <Grid.Col span={2}>
@@ -142,7 +142,7 @@ export function EditTorrent(props: ModalState) {
                 </Grid.Col>
                 <Grid.Col span={8}>
                     <Checkbox
-                        label="Maximum upload speed"
+                        label="Максимальная скорость раздачи"
                         {...form.getInputProps("uploadLimited", { type: "checkbox" })} />
                 </Grid.Col>
                 <Grid.Col span={2}>
@@ -155,7 +155,7 @@ export function EditTorrent(props: ModalState) {
                     KB/s
                 </Grid.Col>
                 <Grid.Col span={8}>
-                    Peer limit
+                    Лимиты раздачи
                 </Grid.Col>
                 <Grid.Col span={2}>
                     <NumberInput
@@ -165,7 +165,7 @@ export function EditTorrent(props: ModalState) {
                 <Grid.Col span={2} />
                 <Grid.Col span={8}>
                     <Checkbox
-                        label="Seed ratio"
+                        label="Коэффицент раздачи"
                         checked={form.values.seedRatioMode < 2}
                         indeterminate={form.values.seedRatioMode === 0}
                         onChange={() => { form.setFieldValue("seedRatioMode", (form.values.seedRatioMode + 1) % 3); }} />
@@ -181,7 +181,7 @@ export function EditTorrent(props: ModalState) {
                 <Grid.Col span={2} />
                 <Grid.Col span={8}>
                     <Checkbox
-                        label="Stop seeding when inactive for"
+                        label="Остановить раздачу, если неактивен"
                         checked={form.values.seedIdleMode < 2}
                         indeterminate={form.values.seedIdleMode === 0}
                         onChange={() => { form.setFieldValue("seedIdleMode", (form.values.seedIdleMode + 1) % 3); }} />
@@ -193,7 +193,7 @@ export function EditTorrent(props: ModalState) {
                         disabled={form.values.seedIdleMode !== 1} />
                 </Grid.Col>
                 <Grid.Col span={2}>
-                    minutes
+                    минут
                 </Grid.Col>
             </Grid>
         </SaveCancelModal>}

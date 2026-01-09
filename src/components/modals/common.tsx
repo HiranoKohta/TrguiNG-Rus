@@ -143,7 +143,7 @@ export function useTorrentLocation(): LocationData {
     const browseHandler = useCallback(() => {
         const mappedLocation = pathMapFromServer(path, serverConfig);
         dialogOpen({
-            title: "Select directory",
+            title: "Выберите папку",
             defaultPath: mappedLocation === "" ? undefined : mappedLocation,
             directory: true,
         }).then((directory) => {
@@ -214,7 +214,7 @@ export function TorrentLocation(props: LocationData) {
                                         rightSection={
                                             <ActionIcon
                                                 component="div"
-                                                title="Remove path"
+                                                title="Удалить путь"
                                                 onClick={(e) => {
                                                     e.stopPropagation();
                                                     props.removePath(path);
@@ -247,7 +247,7 @@ export function Label({
                 rightSection={
                     <CloseButton
                         onMouseDown={onRemove}
-                        title="Remove"
+                        title="Удалить"
                         color="gray.0"
                         variant="transparent"
                         size={22}

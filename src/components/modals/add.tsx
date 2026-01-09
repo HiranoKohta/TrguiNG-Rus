@@ -58,7 +58,7 @@ function AddCommon(props: AddCommonProps) {
             <TorrentLabels labels={props.labels} setLabels={props.setLabels} inputLabel="Labels" disabled={props.disabled} />}
         <Group>
             <Checkbox
-                label="Start torrent"
+                label="Запустить торрент"
                 checked={props.start}
                 disabled={props.disabled}
                 onChange={(e) => { props.setStart(e.currentTarget.checked); }}
@@ -150,7 +150,7 @@ function TabSwitchDropdown({ tabsRef }: { tabsRef: React.RefObject<ServerTabsRef
             ? <></>
             : <Menu shadow="md" width={200} position="bottom-start">
                 <Menu.Target>
-                    <Button variant="subtle" title="Switch server">
+                    <Button variant="subtle" title="Переключить сервер">
                         {value}
                     </Button>
                 </Menu.Target>
@@ -200,7 +200,7 @@ export function AddMagnet(props: AddCommonModalProps) {
             const duplicate = response.arguments["torrent-duplicate"];
             if (duplicate !== undefined) {
                 notifications.show({
-                    title: "Torrent already exists",
+                    title: "Торрент уже существует",
                     message: duplicate.name,
                     color: "green",
                 });
@@ -208,7 +208,7 @@ export function AddMagnet(props: AddCommonModalProps) {
             const added = response.arguments["torrent-added"];
             if (added !== undefined) {
                 notifications.show({
-                    title: "Torrent added",
+                    title: "Торрент добавлен",
                     message: added.name,
                     color: "green",
                 });
@@ -217,7 +217,7 @@ export function AddMagnet(props: AddCommonModalProps) {
         useCallback((e) => {
             console.error("Failed to add torrent:", e);
             notifications.show({
-                title: "Error adding torrent",
+                title: "Не удалось добавить торрент",
                 message: String(e),
                 color: "red",
             });
@@ -246,7 +246,7 @@ export function AddMagnet(props: AddCommonModalProps) {
                 {
                     onSuccess: () => {
                         notifications.show({
-                            message: "Trackers updated",
+                            message: "Трекеры обновлены",
                             color: "green",
                         });
                     },
@@ -274,12 +274,12 @@ export function AddMagnet(props: AddCommonModalProps) {
             </Flex>} >
             <Divider my="sm" />
             <TextInput
-                label="Link" w="100%"
+                label="Ссылка" w="100%"
                 value={magnet}
                 onChange={(e) => { setMagnet(e.currentTarget.value); }}
                 error={existingTorrent === undefined
                     ? undefined
-                    : "Torrent already exists"}
+                    : "Торрент уже существует"}
                 autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" />
             <AddCommon {...common.props} disabled={existingTorrent !== undefined} />
             <Divider my="sm" />
@@ -334,9 +334,9 @@ function useTauriReadFile(
             const pathPromise = typeof uri === "string"
                 ? Promise.resolve(uri)
                 : dialogOpen({
-                    title: "Select torrent file",
+                    title: "Выберите торрент файл",
                     filters: [{
-                        name: "Torrent",
+                        name: "Торрент файл",
                         extensions: ["torrent"],
                     }],
                     multiple: true,
@@ -350,7 +350,7 @@ function useTauriReadFile(
                     }
                 }).catch((e) => {
                     notifications.show({
-                        title: "Error reading torrent",
+                        title: "Ошибка чтения торрента",
                         message: String(e),
                         color: "red",
                     });
@@ -388,7 +388,7 @@ function useWebappReadFile(
                     }]);
                 }).catch(() => {
                     notifications.show({
-                        title: "Error reading file",
+                        title: "Ошибка чтения файла",
                         message: file.name,
                         color: "red",
                     });
@@ -424,7 +424,7 @@ function useFilesInput(
                     })));
                 }).catch((e) => {
                     notifications.show({
-                        title: "Error reading file",
+                        title: "Ошибка чтения файла",
                         message: e,
                         color: "red",
                     });
@@ -511,7 +511,7 @@ export function AddTorrent(props: AddCommonModalProps) {
             const duplicate = response.arguments["torrent-duplicate"];
             if (duplicate !== undefined) {
                 notifications.show({
-                    title: "Torrent already exists",
+                    title: "Торрент уже существует",
                     message: duplicate.name,
                     color: "green",
                 });
@@ -519,7 +519,7 @@ export function AddTorrent(props: AddCommonModalProps) {
             const added = response.arguments["torrent-added"];
             if (added !== undefined) {
                 notifications.show({
-                    title: "Torrent added",
+                    title: "Торрент добавлен",
                     message: added.name,
                     color: "green",
                 });
@@ -531,7 +531,7 @@ export function AddTorrent(props: AddCommonModalProps) {
         useCallback((e) => {
             console.error("Failed to add torrent:", e);
             notifications.show({
-                title: "Error adding torrent",
+                title: "Не удалось добавить торрент",
                 message: String(e),
                 color: "red",
             });
@@ -566,7 +566,7 @@ export function AddTorrent(props: AddCommonModalProps) {
                 {
                     onSuccess: () => {
                         notifications.show({
-                            message: "Trackers updated",
+                            message: "Трекеры обновлены",
                             color: "green",
                         });
                     },
@@ -636,11 +636,11 @@ export function AddTorrent(props: AddCommonModalProps) {
                         ? <></>
                         : <>
                             <Button variant="subtle" disabled={torrentExists}
-                                onClick={() => { setAllWanted(true); }} title="Mark all files wanted">
+                                onClick={() => { setAllWanted(true); }} title="Отметьте все нужные файлы">
                                 All
                             </Button>
                             <Button variant="subtle" disabled={torrentExists}
-                                onClick={() => { setAllWanted(false); }} title="Mark all files unwanted">
+                                onClick={() => { setAllWanted(false); }} title="Отметьте все не нужные файлы">
                                 None
                             </Button>
                         </>}

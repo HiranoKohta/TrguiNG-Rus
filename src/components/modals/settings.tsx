@@ -73,7 +73,7 @@ function ServerListPanel({ form, current, setCurrent }: ServerListPanelProps) {
                     onClick={() => {
                         form.insertListItem("servers", {
                             connection: { url: "", username: "", password: "" },
-                            name: "new",
+                            name: "Новый",
                             pathMappings: [],
                             expandedDirFilters: [],
                             lastSaveDirs: [],
@@ -132,12 +132,12 @@ function ServerPanel(props: ServerPanelProps) {
     return (
         <div style={{ flexGrow: 1 }}>
             <TextInput
-                label="Name"
+                label="Имя"
                 {...props.form.getInputProps(`servers.${props.current}.name`)}
                 autoCorrect="off" autoCapitalize="off" />
 
             <TextInput
-                label="Server rpc url"
+                label="URL сервера rpc"
                 {...props.form.getInputProps(`servers.${props.current}.connection.url`)}
                 placeholder="http://1.2.3.4:9091/transmission/rpc"
                 autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" />
@@ -145,19 +145,19 @@ function ServerPanel(props: ServerPanelProps) {
             <Grid>
                 <Grid.Col span={6}>
                     <TextInput
-                        label="User name"
+                        label="Логин"
                         {...props.form.getInputProps(`servers.${props.current}.connection.username`)}
                         autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" />
                 </Grid.Col>
                 <Grid.Col span={6}>
                     <PasswordInput
-                        label="Password"
+                        label="Пароль"
                         {...props.form.getInputProps(`servers.${props.current}.connection.password`)} />
                 </Grid.Col>
 
                 <Grid.Col span={12}>
                     <Textarea
-                        label={"Path mappings in \"remote=local\" format, one per line"}
+                        label={"Сопоставление путей в формате \"remote=local\", одна на строку"}
                         onChange={(e) => {
                             // TODO fix
                             const mappings = e.target.value.split("\n")
@@ -264,9 +264,9 @@ function IntegrationsPanel({ form }: { form: UseFormReturnType<FormValues> }) {
             </Grid.Col>
             <Grid.Col>
                 <Text fz="sm" fs="italic">
-                    Hiding the window keeps frontend running, this uses more RAM but reopening the window is nearly instant.
-                    Closing the window shuts down the webview, in this mode reopening the window is slower.
-                    You can always access the window through the system tray icon.
+                    При закрытии окна внешний интерфейс продолжает работать, при этом используется больше оперативной памяти, но повторное открытие окна происходит почти мгновенно.
+                    При закрытии окна webview отключается, в этом режиме повторное открытие окна происходит медленнее.
+                    Вы всегда можете получить доступ к окну через значок в системном трее.
                 </Text>
             </Grid.Col>
         </Grid>
@@ -347,7 +347,7 @@ export function AppSettingsModal(props: AppSettingsModalProps) {
             onClose={props.close}
             onSave={onSave}
             centered
-            title="Application Settings"
+            title="Настройки приложения"
         >
             <form>
                 <Tabs mih="33rem" defaultValue="servers">

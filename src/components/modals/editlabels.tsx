@@ -50,8 +50,8 @@ export function EditLabelsModal(props: ModalState) {
     const onSave = useCallback(() => {
         if (rpcVersion < 16) {
             notifications.show({
-                title: "Can not set labels",
-                message: "Labels feature requires transmission 3.0 or later",
+                title: "Не удаётся установить метку",
+                message: "Установка меток поддерживается только в Transmission 3.0 или новее",
                 color: "red",
             });
             close();
@@ -65,13 +65,13 @@ export function EditLabelsModal(props: ModalState) {
             {
                 onSuccess: () => {
                     notifications.show({
-                        message: "Labels are updated",
+                        message: "Метки изменены",
                         color: "green",
                     });
                 },
                 onError: (error) => {
                     notifications.show({
-                        title: "Failed to update labels",
+                        title: "Не удалось обновить метки",
                         message: String(error),
                         color: "red",
                     });
@@ -89,7 +89,7 @@ export function EditLabelsModal(props: ModalState) {
                 onClose={props.close}
                 onSave={onSave}
                 centered
-                title="Edit torrent labels"
+                title="Изменить метку торрента"
             >
                 {rpcVersion < 16
                     ? <Text color="red" fz="lg">Labels feature requires transmission 3.0 or later</Text>

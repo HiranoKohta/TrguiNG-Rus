@@ -58,7 +58,7 @@ export function RemoveModal(props: ModalState) {
                 onError: (e) => {
                     console.error("Error removing torrents", e);
                     notifications.show({
-                        message: "Error removing torrents",
+                        message: "Ошибка удаления торрента",
                         color: "red",
                     });
                 },
@@ -68,12 +68,12 @@ export function RemoveModal(props: ModalState) {
     }, [remove, serverSelected, deleteData, props]);
 
     return (
-        <HkModal opened={props.opened} onClose={props.close} title="Remove torrents" centered size="lg">
+        <HkModal opened={props.opened} onClose={props.close} title="Удалить торрент" centered size="lg">
             <Divider my="sm" />
             <Text mb="md">Are you sure you want to remove following torrents?</Text>
             <TorrentsNames />
             <Checkbox
-                label="Delete torrent data"
+                label="Удалить загруженные файлы"
                 checked={deleteData}
                 onChange={onDeleteDataChanged}
                 my="xl" />

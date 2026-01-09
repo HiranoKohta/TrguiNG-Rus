@@ -48,7 +48,7 @@ export function MoveModal(props: ModalState) {
                 onError: (e) => {
                     console.error("Error moving torrents", e);
                     notifications.show({
-                        message: "Error moving torrents",
+                        message: "Ошибка перемещения торрента",
                         color: "red",
                     });
                 },
@@ -70,13 +70,13 @@ export function MoveModal(props: ModalState) {
 
     return <>
         {props.opened &&
-            <HkModal opened={props.opened} onClose={props.close} title="Move torrents" centered size="lg">
+            <HkModal opened={props.opened} onClose={props.close} title="Переместить торрент" centered size="lg">
                 <Divider my="sm" />
                 <Text mb="md">Enter new location for</Text>
                 <TorrentsNames />
                 <TorrentLocation {...location} focusPath/>
                 <Checkbox
-                    label="Move torrent data to new location"
+                    label="Переместить загруженные файлы"
                     checked={moveData}
                     onChange={(e) => { setMoveData(e.currentTarget.checked); }}
                     my="xl" />

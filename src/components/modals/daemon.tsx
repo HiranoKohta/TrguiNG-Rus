@@ -44,8 +44,8 @@ interface FormValues extends InterfaceFormValues {
 function PollingPanel({ form }: { form: UseFormReturnType<FormValues> }) {
     return (
         <Grid align="center">
-            <Grid.Col><Text>Update intervals (sec)</Text></Grid.Col>
-            <Grid.Col span={8}>Session</Grid.Col>
+            <Grid.Col><Text>Интервал обновления (sec)</Text></Grid.Col>
+            <Grid.Col span={8}>Сессия</Grid.Col>
             <Grid.Col span={2}>
                 <NumberInput
                     min={1}
@@ -54,7 +54,7 @@ function PollingPanel({ form }: { form: UseFormReturnType<FormValues> }) {
                 />
             </Grid.Col>
             <Grid.Col span={2} />
-            <Grid.Col span={8}>Torrent details</Grid.Col>
+            <Grid.Col span={8}>Детали торрента</Grid.Col>
             <Grid.Col span={2}>
                 <NumberInput
                     min={1}
@@ -63,7 +63,7 @@ function PollingPanel({ form }: { form: UseFormReturnType<FormValues> }) {
                 />
             </Grid.Col>
             <Grid.Col span={2} />
-            <Grid.Col span={8}>Torrents active</Grid.Col>
+            <Grid.Col span={8}>Активного торрента</Grid.Col>
             <Grid.Col span={2}>
                 <NumberInput
                     min={1}
@@ -72,7 +72,7 @@ function PollingPanel({ form }: { form: UseFormReturnType<FormValues> }) {
                 />
             </Grid.Col>
             <Grid.Col span={2} />
-            <Grid.Col span={8}>Torrents inactive/minimized</Grid.Col>
+            <Grid.Col span={8}>Неактивного торрента/свернутого</Grid.Col>
             <Grid.Col span={2}>
                 <NumberInput
                     min={1}
@@ -90,7 +90,7 @@ function DownloadPanel({ form, session }: { form: UseFormReturnType<FormValues>,
         <Grid align="center">
             <Grid.Col>
                 <TextInput
-                    label="Default download folder (server setting)"
+                    label="Папка для загрузки по умолчанию (нестройки сервера)"
                     {...form.getInputProps("session.download-dir")}
                     autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" />
             </Grid.Col>
@@ -116,24 +116,24 @@ function DownloadPanel({ form, session }: { form: UseFormReturnType<FormValues>,
             </Grid.Col>
             <Grid.Col>
                 <Checkbox mt="lg"
-                    label="Add .part extension to incomplete files"
+                    label="Добавлять расширение .part для не завершённых файлов"
                     {...form.getInputProps("session.rename-partial-files", { type: "checkbox" })} />
             </Grid.Col>
             <Grid.Col>
                 <Checkbox mt="lg"
-                    label="Use separate directory for incomplete files"
+                    label="Использовать отдельную папку для неполных файлов"
                     {...form.getInputProps("session.incomplete-dir-enabled", { type: "checkbox" })} />
             </Grid.Col>
             <Grid.Col>
                 <TextInput
-                    label="Path for incomplete files"
+                    label="Папка для для неполных файлов:"
                     {...form.getInputProps("session.incomplete-dir")}
                     disabled={session["incomplete-dir-enabled"] !== true}
                     autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" />
             </Grid.Col>
             <Grid.Col span={6}>
                 <Checkbox
-                    label="Use default seed ratio limit"
+                    label="Ограничить коэффициет раздачи"
                     {...form.getInputProps("session.seedRatioLimited", { type: "checkbox" })} />
             </Grid.Col>
             <Grid.Col span={2}>
@@ -148,7 +148,7 @@ function DownloadPanel({ form, session }: { form: UseFormReturnType<FormValues>,
             <Grid.Col span={4}></Grid.Col>
             <Grid.Col span={6}>
                 <Checkbox
-                    label="Stop idle torrents after"
+                    label="Остановить при бездействии через"
                     {...form.getInputProps("session.idle-seeding-limit-enabled", { type: "checkbox" })} />
             </Grid.Col>
             <Grid.Col span={2}>
@@ -158,8 +158,8 @@ function DownloadPanel({ form, session }: { form: UseFormReturnType<FormValues>,
                     disabled={session["idle-seeding-limit-enabled"] !== true}
                 />
             </Grid.Col>
-            <Grid.Col span={4}>minutes</Grid.Col>
-            <Grid.Col span={6}>Disk cache size</Grid.Col>
+            <Grid.Col span={4}>минут</Grid.Col>
+            <Grid.Col span={6}>Размер дискового кеша</Grid.Col>
             <Grid.Col span={2}>
                 <NumberInput
                     min={0}
@@ -199,11 +199,11 @@ function NetworkPanel(
         if (status === "success") {
             setTestPortResult(testPort.arguments["port-is-open"] === true
                 ? {
-                    label: "Port is open",
+                    label: "Порт открыт",
                     color: "green",
                 }
                 : {
-                    label: "Port unreachable",
+                    label: "Порт закрыт",
                     color: "red",
                 });
         } else if (status === "loading") {
@@ -213,7 +213,7 @@ function NetworkPanel(
             });
         } else {
             setTestPortResult({
-                label: "API error",
+                label: "Ошибка API",
                 color: "red",
             });
         }
@@ -235,7 +235,7 @@ function NetworkPanel(
             onError: (e) => {
                 console.log(e);
                 notifications.show({
-                    title: "Error updating blocklist",
+                    title: "Не удалось обновить блок лист",
                     message: e.message,
                     color: "red",
                 });
@@ -246,7 +246,7 @@ function NetworkPanel(
     return (
         <Grid align="center">
             <Grid.Col span={3}>
-                Incoming port:
+                Входящий порт:
             </Grid.Col>
             <Grid.Col span={3}>
                 <NumberInput
@@ -259,11 +259,11 @@ function NetworkPanel(
             <Grid.Col span={3}>
                 <Tooltip
                     withArrow
-                    label="Checks currently configured port. If you made changes save them before testing.">
+                    label="Если вы изменили порт, пожалуйста сохраните его перед тестированием.">
                     <Button
                         w="100%"
                         onClick={onTestPort}
-                        title="Test port"
+                        title="Тест порта"
                     >
                         Test port
                     </Button>
@@ -277,16 +277,16 @@ function NetworkPanel(
             </Grid.Col>
             <Grid.Col>
                 <Checkbox mt="lg"
-                    label="Let daemon pick a random port"
+                    label="Использовать случайный порт"
                     {...form.getInputProps("session.peer-port-random-on-start", { type: "checkbox" })} />
             </Grid.Col>
             <Grid.Col>
                 <Checkbox mt="lg"
-                    label="Enable UPnP port forwarding"
+                    label="Включить переадресацию портов (UPnP)"
                     {...form.getInputProps("session.port-forwarding-enabled", { type: "checkbox" })} />
             </Grid.Col>
             <Grid.Col span={3}>
-                Encryption:
+                Шифрование:
             </Grid.Col>
             <Grid.Col span={3}>
                 <NativeSelect
@@ -295,7 +295,7 @@ function NetworkPanel(
             </Grid.Col>
             <Grid.Col span={6}></Grid.Col>
             <Grid.Col span={3}>
-                Global peer limit:
+                Глобальный лимит пиров:
             </Grid.Col>
             <Grid.Col span={3}>
                 <NumberInput
@@ -304,7 +304,7 @@ function NetworkPanel(
                 />
             </Grid.Col>
             <Grid.Col span={3}>
-                per torrent:
+                Пиров на торрент:
             </Grid.Col>
             <Grid.Col span={3}>
                 <NumberInput
@@ -314,27 +314,27 @@ function NetworkPanel(
             </Grid.Col>
             <Grid.Col span={6}>
                 <Checkbox mt="lg"
-                    label="Enable peer exchange"
+                    label="Включить PEX"
                     {...form.getInputProps("session.pex-enabled", { type: "checkbox" })} />
             </Grid.Col>
             <Grid.Col span={6}>
                 <Checkbox mt="lg"
-                    label="Enable DHT"
+                    label="Включить DHT"
                     {...form.getInputProps("session.dht-enabled", { type: "checkbox" })} />
             </Grid.Col>
             <Grid.Col span={6}>
                 <Checkbox my="lg"
-                    label="Enable local discovery"
+                    label="Включить LDP"
                     {...form.getInputProps("session.lpd-enabled", { type: "checkbox" })} />
             </Grid.Col>
             <Grid.Col span={6}>
                 <Checkbox my="lg"
-                    label="Enable uTP"
+                    label="Включить uTP"
                     {...form.getInputProps("session.utp-enabled", { type: "checkbox" })} />
             </Grid.Col>
             <Grid.Col span={6}>
                 <Checkbox
-                    label="Enable blocklist:"
+                    label="Включить чёрный список:"
                     {...form.getInputProps("session.blocklist-enabled", { type: "checkbox" })} />
             </Grid.Col>
             <Grid.Col span={6}>
@@ -349,11 +349,11 @@ function NetworkPanel(
             <Grid.Col span={3}>
                 <Tooltip
                     withArrow
-                    label="Fetches currently configured blocklist. If you made changes save them before updating.">
+                    label="Если вы изменили ссылку, сохраните его перед обновлением.">
                     <Button
                         w="100%"
                         onClick={onUpdateBlocklist}
-                        title="Update blocklist"
+                        title="Обновить"
                     >
                         Update
                     </Button>
@@ -388,7 +388,7 @@ function TimeInput(props: NumberInputProps) {
     />;
 }
 
-const DaysOfTheWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] as const;
+const DaysOfTheWeek = ["Вск", "Пнд", "Втр", "Срд", "Чтв", "Птп", "Сбт"] as const;
 
 function DayOfWeekCheckbox({ form, day, session }: { form: UseFormReturnType<FormValues>, day: number, session: SessionInfo }) {
     return <Checkbox my="lg"
@@ -407,11 +407,11 @@ function BandwidthPanel({ form, session }: { form: UseFormReturnType<FormValues>
     return (
         <Grid align="center">
             <Grid.Col span={6}></Grid.Col>
-            <Grid.Col span={3}>Normal</Grid.Col>
-            <Grid.Col span={3}>Alternate</Grid.Col>
+            <Grid.Col span={3}>Обычная</Grid.Col>
+            <Grid.Col span={3}>Альтернативная</Grid.Col>
             <Grid.Col span={6}>
                 <Checkbox
-                    label="Maximum download speed (KB/s):"
+                    label="Ограничить скорость загрузки (KB/s):"
                     {...form.getInputProps("session.speed-limit-down-enabled", { type: "checkbox" })} />
             </Grid.Col>
             <Grid.Col span={3}>
@@ -427,7 +427,7 @@ function BandwidthPanel({ form, session }: { form: UseFormReturnType<FormValues>
             </Grid.Col>
             <Grid.Col span={6}>
                 <Checkbox
-                    label="Maximum upload speed (KB/s):"
+                    label="Ограничить скорость раздачи (KB/s):"
                     {...form.getInputProps("session.speed-limit-up-enabled", { type: "checkbox" })} />
             </Grid.Col>
             <Grid.Col span={3}>
@@ -443,15 +443,15 @@ function BandwidthPanel({ form, session }: { form: UseFormReturnType<FormValues>
             </Grid.Col>
             <Grid.Col>
                 <Checkbox mt="lg"
-                    label="Use alternate bandwidth settings"
+                    label="Использовать альтернативные настройки скорости"
                     {...form.getInputProps("session.alt-speed-enabled", { type: "checkbox" })} />
             </Grid.Col>
             <Grid.Col>
                 <Checkbox my="lg"
-                    label="Apply alternate bandwidth settings automatically"
+                    label="Автоматически применять альтернативные скорости"
                     {...form.getInputProps("session.alt-speed-time-enabled", { type: "checkbox" })} />
             </Grid.Col>
-            <Grid.Col span={2}>From:</Grid.Col>
+            <Grid.Col span={2}>Включить:</Grid.Col>
             <Grid.Col span={3}>
                 <TimeInput
                     min={0}
@@ -459,7 +459,7 @@ function BandwidthPanel({ form, session }: { form: UseFormReturnType<FormValues>
                     {...form.getInputProps("session.alt-speed-time-begin")}
                     disabled={session["alt-speed-time-enabled"] !== true} />
             </Grid.Col>
-            <Grid.Col span={2}>to:</Grid.Col>
+            <Grid.Col span={2}>Выключить:</Grid.Col>
             <Grid.Col span={3}>
                 <TimeInput
                     min={0}
@@ -468,7 +468,7 @@ function BandwidthPanel({ form, session }: { form: UseFormReturnType<FormValues>
                     disabled={session["alt-speed-time-enabled"] !== true} />
             </Grid.Col>
             <Grid.Col span={2}></Grid.Col>
-            <Grid.Col span={2}>Days:</Grid.Col>
+            <Grid.Col span={2}>Дни:</Grid.Col>
             <Grid.Col span={10}>
                 <Group>
                     {DaysOfTheWeek.map((_, day) =>
@@ -484,7 +484,7 @@ function QueuePanel({ form, session }: { form: UseFormReturnType<FormValues>, se
         <Grid align="center">
             <Grid.Col span={8}>
                 <Checkbox
-                    label="Download queue size"
+                    label="Количество одновременных загрузок"
                     {...form.getInputProps("session.download-queue-enabled", { type: "checkbox" })} />
             </Grid.Col>
             <Grid.Col span={2}>
@@ -496,7 +496,7 @@ function QueuePanel({ form, session }: { form: UseFormReturnType<FormValues>, se
             <Grid.Col span={2}></Grid.Col>
             <Grid.Col span={8}>
                 <Checkbox
-                    label="Seed queue size"
+                    label="Количество одновременных раздач"
                     {...form.getInputProps("session.seed-queue-enabled", { type: "checkbox" })} />
             </Grid.Col>
             <Grid.Col span={2}>
@@ -508,7 +508,7 @@ function QueuePanel({ form, session }: { form: UseFormReturnType<FormValues>, se
             <Grid.Col span={2}></Grid.Col>
             <Grid.Col span={8}>
                 <Checkbox
-                    label="Consider torrents as stalled when idle for"
+                    label="Считать торренты зависшими, если нет активности"
                     {...form.getInputProps("session.queue-stalled-enabled", { type: "checkbox" })} />
             </Grid.Col>
             <Grid.Col span={2}>
@@ -517,7 +517,7 @@ function QueuePanel({ form, session }: { form: UseFormReturnType<FormValues>, se
                     {...form.getInputProps("session.queue-stalled-minutes")}
                     disabled={session["queue-stalled-enabled"] !== true} />
             </Grid.Col>
-            <Grid.Col span={2}>minutes</Grid.Col>
+            <Grid.Col span={2}>минут</Grid.Col>
         </Grid>
     );
 }
@@ -603,7 +603,7 @@ export function DaemonSettingsModal(props: ModalState) {
             mutation.mutate(form.values.session, {
                 onSuccess: () => {
                     notifications.show({
-                        message: "Session saved successfully",
+                        message: "Сессия успешно сохранена",
                         color: "green",
                     });
                     props.close();
@@ -614,7 +614,7 @@ export function DaemonSettingsModal(props: ModalState) {
                 },
                 onError: (error) => {
                     notifications.show({
-                        title: "Failed to update daemon settings",
+                        title: "Не удалось обновить настройки сервиса",
                         message: String(error),
                         color: "red",
                     });
@@ -633,7 +633,7 @@ export function DaemonSettingsModal(props: ModalState) {
             onSave={onSave}
             saveLoading={mutation.isLoading}
             centered
-            title="Server Settings"
+            title="Настройки сервера"
         >
             <Box pos="relative">
                 <LoadingOverlay visible={fetchStatus === "fetching"} overlayBlur={2} />

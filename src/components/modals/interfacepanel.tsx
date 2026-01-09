@@ -123,47 +123,47 @@ export function InterfaceSettigsPanel<V extends InterfaceFormValues>(props: { fo
     return (
         <Tabs defaultValue="appearance" orientation="vertical" mih="29rem">
             <Tabs.List>
-                <Tabs.Tab value="appearance" p="lg">Appearance</Tabs.Tab>
-                <Tabs.Tab value="downloads" p="lg">Downloads</Tabs.Tab>
-                <Tabs.Tab value="miscellaneous" p="lg">Miscellaneous</Tabs.Tab>
+                <Tabs.Tab value="appearance" p="lg">Оформление</Tabs.Tab>
+                <Tabs.Tab value="downloads" p="lg">Загрузки</Tabs.Tab>
+                <Tabs.Tab value="miscellaneous" p="lg">Прочие</Tabs.Tab>
             </Tabs.List>
             <Tabs.Panel value="appearance" p="lg">
                 <Grid align="center">
                     <Grid.Col span={6}>
-                        Theme
+                        Тема
                     </Grid.Col>
                     <Grid.Col span={6}>
                         <ColorSchemeToggle />
                     </Grid.Col>
                     <Grid.Col span={6}>
-                        Font
+                        Шрифт
                     </Grid.Col>
                     <Grid.Col span={6}>
                         <NativeSelect data={systemFonts} value={style.font} onChange={(e) => { setFont(e.currentTarget.value); }} />
                     </Grid.Col>
                     <Grid.Col span={6}>
-                        Text color
+                        Цвет текста
                     </Grid.Col>
                     <Grid.Col span={6}>
                         <ColorChooser value={style[theme.colorScheme].color ?? defaultColor} onChange={setTextColor} />
                     </Grid.Col>
                     <Grid.Col span={6}>
-                        Background
+                        Фон
                     </Grid.Col>
                     <Grid.Col span={6}>
                         <ColorChooser value={style[theme.colorScheme].backgroundColor ?? defaultBg} onChange={setBgColor} />
                     </Grid.Col>
-                    <Grid.Col span={6}>Progress bars</Grid.Col>
+                    <Grid.Col span={6}>Стиль индикатора прогресса</Grid.Col>
                     <Grid.Col span={3}>
-                        <Checkbox label="Colorful"
+                        <Checkbox label="Многоцветный"
                             {...props.form.getInputProps("interface.colorfulProgressbars", { type: "checkbox" })} />
                     </Grid.Col>
                     <Grid.Col span={3}>
-                        <Checkbox label="Animated"
+                        <Checkbox label="Анимированный"
                             {...props.form.getInputProps("interface.animatedProgressbars", { type: "checkbox" })} />
                     </Grid.Col>
                     <Grid.Col>
-                        <Checkbox label="Custom date/time format" mt="lg"
+                        <Checkbox label="Свой формат двты/времени" mt="lg"
                             {...props.form.getInputProps("interface.useCustomDateTimeFormat", { type: "checkbox" })} />
                     </Grid.Col>
                     <Grid.Col span={6}>
@@ -181,11 +181,11 @@ export function InterfaceSettigsPanel<V extends InterfaceFormValues>(props: { fo
             <Tabs.Panel value="downloads" p="lg">
                 <Grid align="center">
                     <Grid.Col>
-                        <Checkbox label="Skip add torrent dialog"
+                        <Checkbox label="Пропускать диалог добавления торрента"
                             {...props.form.getInputProps("interface.skipAddDialog", { type: "checkbox" })} />
                     </Grid.Col>
                     <Grid.Col span={6}>
-                        New torrent start
+                        Автозапуск новых торрентов
                     </Grid.Col>
                     <Grid.Col span={6}>
                         <NativeSelect data={AddTorrentStartOptions as unknown as string[]}
@@ -193,7 +193,7 @@ export function InterfaceSettigsPanel<V extends InterfaceFormValues>(props: { fo
                             onChange={(e) => { setFieldValue("interface.addTorrentStart", e.target.value); }} />
                     </Grid.Col>
                     <Grid.Col span={6}>
-                        New torrent priority
+                        Приоритет новых торрентов
                     </Grid.Col>
                     <Grid.Col span={6}>
                         <NativeSelect data={AddTorrentPriorityOptions as unknown as string[]}
@@ -201,10 +201,10 @@ export function InterfaceSettigsPanel<V extends InterfaceFormValues>(props: { fo
                             onChange={(e) => { setFieldValue("interface.addTorrentPriority", e.target.value); }} />
                     </Grid.Col>
                     <Grid.Col>
-                        <Checkbox label="Sort download directories history alphabetically" my="lg"
+                        <Checkbox label="Сортировка истории папок по алфавиту" my="lg"
                             {...props.form.getInputProps("interface.sortLastSaveDirs", { type: "checkbox" })} />
                     </Grid.Col>
-                    <Grid.Col span={9}>Max number of saved download directories</Grid.Col>
+                    <Grid.Col span={9}>Максимальное количество запоминаемых путей</Grid.Col>
                     <Grid.Col span={3}>
                         <NumberInput
                             min={1}
@@ -213,7 +213,7 @@ export function InterfaceSettigsPanel<V extends InterfaceFormValues>(props: { fo
                     </Grid.Col>
                     <Grid.Col>
                         <Textarea minRows={6}
-                            label="Preconfigured directories (one per line)"
+                            label="Предопределенные папки (одна на строку)"
                             value={props.form.values.interface.preconfiguredDirs.join("\n")}
                             onChange={(e) => {
                                 props.form.setFieldValue(
@@ -234,8 +234,8 @@ export function InterfaceSettigsPanel<V extends InterfaceFormValues>(props: { fo
                                     </HoverCard.Target>
                                     <HoverCard.Dropdown>
                                         <Text size="sm">
-                                            These labels will always be present in the suggestions list
-                                            and filters even if no existing torrents have them.
+                                            Эти ярлыки всегда будут присутствовать в списке предложений и фильтров,
+                                            даже если их нет ни в одном из существующих торрентов.
                                         </Text>
                                     </HoverCard.Dropdown>
                                 </HoverCard>
@@ -256,7 +256,7 @@ export function InterfaceSettigsPanel<V extends InterfaceFormValues>(props: { fo
             <Tabs.Panel value="miscellaneous" p="lg">
                 <Grid align="center">
                     <Grid.Col span={8}>
-                        Remove torrent dialog delete data option
+                        Удалять торрент вместе с файлами
                     </Grid.Col>
                     <Grid.Col span={4}>
                         <NativeSelect data={DeleteTorrentDataOptions as unknown as string[]}
@@ -269,17 +269,17 @@ export function InterfaceSettigsPanel<V extends InterfaceFormValues>(props: { fo
                             value={props.form.values.interface.ignoredTrackerPrefixes}
                             onChange={setIgnoredTrackerPrefixes}
                             label={<Box>
-                                <span>Ignored tracker prefixes</span>
+                                <span>Игнорировать трекеры с префиксом</span>
                                 <HoverCard width={380} shadow="md">
                                     <HoverCard.Target>
                                         <Icon.Question />
                                     </HoverCard.Target>
                                     <HoverCard.Dropdown>
                                         <Text size="sm">
-                                            When subdomain of the tracker looks like one of these strings + (optional) digits,
-                                            it will be omitted. This affects grouping in filters and display in table columns.
-                                            You can use regex here for more advanced filtering, the list will be combined
-                                            using &quot;|&quot;.
+                                            Если поддомен трекера выглядит как одна из этих строк + (необязательные) цифры,
+                                            он будет опущен. Это влияет на группировку в фильтрах и отображение в столбцах таблицы.
+                                            Вы можете использовать здесь регулярное выражение для более гибкой фильтрации,
+                                            список будет объединен с помощью &quot;|&quot;.
                                         </Text>
                                     </HoverCard.Dropdown>
                                 </HoverCard>
@@ -298,7 +298,7 @@ export function InterfaceSettigsPanel<V extends InterfaceFormValues>(props: { fo
                     </Grid.Col>
                     <Grid.Col>
                         <Textarea minRows={6}
-                            label="Default tracker list"
+                            label="Список трекеров по умолчанию:"
                             value={props.form.values.interface.defaultTrackers.join("\n")}
                             onChange={(e) => {
                                 props.form.setFieldValue(
