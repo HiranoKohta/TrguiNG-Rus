@@ -99,7 +99,7 @@ function useButtonHandlers(
                     onError: (e) => {
                         console.error("Error running torrent update method", method, e);
                         notifications.show({
-                            message: "Error updating torrent",
+                            message: "Ошибка обновления торрента",
                             color: "red",
                         });
                     },
@@ -115,13 +115,13 @@ function useButtonHandlers(
                 {
                     onSuccess: () => {
                         notifications.show({
-                            message: "Priority is updated",
+                            message: "Приоритет изменен",
                             color: "green",
                         });
                     },
                     onError: (error) => {
                         notifications.show({
-                            title: "Failed to update priority",
+                            title: "Не удалось изменить приоритет",
                             message: String(error),
                             color: "red",
                         });
@@ -235,7 +235,7 @@ function Toolbar(props: ToolbarProps) {
                 msg = e.message;
             }
             notifications.show({
-                title: "Error importing settings",
+                title: "Ошибка импорта нвстроек",
                 message: msg,
                 color: "red",
             });
@@ -246,12 +246,12 @@ function Toolbar(props: ToolbarProps) {
         <Flex w="100%" align="stretch">
             <Button.Group mx="sm">
                 <ToolbarButton
-                    title="Add torrent file"
+                    title="Добавить торрент фвйл"
                     onClick={() => { props.modals.current?.addTorrent(); }}>
                     <Icon.FileArrowDownFill size="1.5rem" color={theme.colors.green[8]} />
                 </ToolbarButton>
                 <ToolbarButton
-                    title="Add magnet link"
+                    title="Добавить магнет ссылку"
                     onClick={() => { props.modals.current?.addMagnet(); }}>
                     <Icon.MagnetFill size="1.5rem" color={theme.colors.green[8]} />
                 </ToolbarButton>
@@ -259,17 +259,17 @@ function Toolbar(props: ToolbarProps) {
 
             <Button.Group mx="sm">
                 <ToolbarButton
-                    title="Start torrent (F3)"
+                    title="Запустить торрент (F3)"
                     onClick={handlers.start} >
                     <Icon.PlayCircleFill size="1.5rem" color={theme.colors.blue[6]} />
                 </ToolbarButton>
                 <ToolbarButton
-                    title="Pause torrent (F4)"
+                    title="Остановить торрент (F4)"
                     onClick={handlers.pause} >
                     <Icon.PauseCircleFill size="1.5rem" color={theme.colors.blue[6]} />
                 </ToolbarButton>
                 <ToolbarButton
-                    title="Remove torrent (del)"
+                    title="Удалить торрент (del)"
                     onClick={handlers.remove}>
                     <Icon.XCircleFill size="1.5rem" color={theme.colors.red[6]} />
                 </ToolbarButton>
@@ -277,12 +277,12 @@ function Toolbar(props: ToolbarProps) {
 
             <Button.Group mx="sm">
                 <ToolbarButton
-                    title="Move up in queue"
+                    title="Сдвинуть вверх"
                     onClick={handlers.queueUp} >
                     <Icon.ArrowUpCircleFill size="1.5rem" color={theme.colors.green[8]} />
                 </ToolbarButton>
                 <ToolbarButton
-                    title="Move down in queue"
+                    title="Сдвинуть вниз"
                     onClick={handlers.queueDown} >
                     <Icon.ArrowDownCircleFill size="1.5rem" color={theme.colors.green[8]} />
                 </ToolbarButton>
@@ -290,19 +290,19 @@ function Toolbar(props: ToolbarProps) {
 
             <Button.Group mx="sm">
                 <ToolbarButton
-                    title="Move torrent (F6)"
+                    title="Переместить торрент (F6)"
                     onClick={handlers.move}>
                     <Icon.FolderFill size="1.5rem" color={theme.colors.yellow[4]} stroke={theme.colors.yellow[5]} />
                 </ToolbarButton>
                 <ToolbarButton
-                    title="Set labels (F7)"
+                    title="Присвоить метку торренту (F7)"
                     onClick={handlers.setLabels} >
                     <Icon.TagsFill size="1.5rem" color={theme.colors.blue[6]} />
                 </ToolbarButton>
 
                 <Menu shadow="md" width="10rem" withinPortal returnFocus middlewares={{ shift: true, flip: false }}>
                     <Menu.Target>
-                        <ToolbarButton title="Set priority">
+                        <ToolbarButton title="Измекнить приоритет торрента">
                             <PriorityIcon width="1.5rem" height="1.5rem"
                                 fill={theme.colors.yellow[theme.colorScheme === "dark" ? 4 : 6]} />
                         </ToolbarButton>
@@ -336,7 +336,7 @@ function Toolbar(props: ToolbarProps) {
             <TextInput mx="sm" ref={searchRef}
                 icon={<Icon.Search size="1rem" />}
                 placeholder={searchPlaceholder}
-                rightSection={<ActionIcon onClick={onSearchClear} title="Clear">
+                rightSection={<ActionIcon onClick={onSearchClear} title="Очистить">
                     <Icon.XLg size="1rem" color={theme.colors.red[6]} />
                 </ActionIcon>}
                 onInput={onSearchInput}
@@ -348,7 +348,7 @@ function Toolbar(props: ToolbarProps) {
 
             <Menu shadow="md" width="12rem" withinPortal returnFocus middlewares={{ shift: true, flip: true }}>
                 <Menu.Target>
-                    <ToolbarButton title="Layout">
+                    <ToolbarButton title="Управление панелями">
                         <Icon.Grid1x2Fill size="1.5rem" style={{ transform: "rotate(-90deg)" }} />
                     </ToolbarButton>
                 </Menu.Target>
@@ -356,34 +356,34 @@ function Toolbar(props: ToolbarProps) {
                 <Menu.Dropdown>
                     <Menu.Item
                         onClick={props.toggleMainSplit} rightSection={<Kbd>{`${modKeyString()} P`}</Kbd>}>
-                        Change layout
+                        Переключить панели
                     </Menu.Item>
                     <Menu.Item
                         onClick={props.toggleFiltersPanel} rightSection={<Kbd>{`${modKeyString()} O`}</Kbd>}>
-                        Toggle filters
+                        Переключить фильтр
                     </Menu.Item>
                     <Menu.Item
                         onClick={props.toggleDetailsPanel} rightSection={<Kbd>{`${modKeyString()} I`}</Kbd>}>
-                        Toggle details
+                        Переключить детали
                     </Menu.Item>
                     {props.extra !== undefined &&
                         <Menu.Item
                             onClick={props.toggleTabStrip} rightSection={<Kbd>{`${modKeyString()} [`}</Kbd>}>
-                            Toggle tab strip
+                            Переключить вкладку
                         </Menu.Item>}
                     <Menu.Divider />
-                    <Menu.Label>Interface settings</Menu.Label>
+                    <Menu.Label>Настройки интерфейса</Menu.Label>
                     <Menu.Item onClick={onSettingsExport}>
-                        Export
+                        Экспорт
                     </Menu.Item>
                     <Menu.Item onClick={() => { void onSettingsImport(); }}>
-                        Import
+                        Импорт
                     </Menu.Item>
                 </Menu.Dropdown>
             </Menu>
 
             <ToolbarButton
-                title="Polling intervals and server settings (F9)"
+                title="Интервалы опроса и настройки сервера (F9)"
                 onClick={handlers.daemonSettings}>
                 <Icon.Tools size="1.5rem" />
             </ToolbarButton>

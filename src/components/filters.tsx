@@ -46,18 +46,18 @@ interface StatusFilter extends NamedFilter {
 
 const statusFilters: StatusFilter[] = [
     {
-        name: "All Torrents",
+        name: "Все торренты",
         filter: () => true,
         icon: StatusIcons.All,
         required: true,
     },
     {
-        name: "Downloading",
+        name: "Загружаются",
         filter: (t: Torrent) => t.status === Status.downloading,
         icon: StatusIcons.Downloading,
     },
     {
-        name: "Completed",
+        name: "Завершённые",
         filter: (t: Torrent) => {
             return t.status === Status.seeding ||
                 (t.sizeWhenDone > 0 && Math.max(t.sizeWhenDone - t.haveValid, 0) === 0);
@@ -65,36 +65,36 @@ const statusFilters: StatusFilter[] = [
         icon: StatusIcons.Completed,
     },
     {
-        name: "Active",
+        name: "Активные",
         filter: (t: Torrent) => {
             return t.rateDownload > 0 || t.rateUpload > 0;
         },
         icon: StatusIcons.Active,
     },
     {
-        name: "Inactive",
+        name: "Неактивные",
         filter: (t: Torrent) => {
             return t.rateDownload === 0 && t.rateUpload === 0 && t.status !== Status.stopped;
         },
         icon: StatusIcons.Inactive,
     },
     {
-        name: "Running",
+        name: "В работе",
         filter: (t: Torrent) => t.status !== Status.stopped,
         icon: StatusIcons.Running,
     },
     {
-        name: "Stopped",
+        name: "Остановленные",
         filter: (t: Torrent) => t.status === Status.stopped,
         icon: StatusIcons.Stopped,
     },
     {
-        name: "Error",
+        name: "С ошибками",
         filter: (t: Torrent) => (t.error !== 0 || t.cachedError !== ""),
         icon: StatusIcons.Error,
     },
     {
-        name: "Waiting",
+        name: "Ожидающие",
         filter: (t: Torrent) => [
             Status.verifying,
             Status.queuedToVerify,
@@ -102,14 +102,14 @@ const statusFilters: StatusFilter[] = [
         icon: StatusIcons.Waiting,
     },
     {
-        name: "Magnetizing",
+        name: "Примагничеваются",
         filter: (t: Torrent) => t.status === Status.downloading && t.pieceCount === 0,
         icon: StatusIcons.Magnetizing,
     },
 ];
 
 const noLabelsFilter: NamedFilter = {
-    name: "<No labels>",
+    name: "<Без метки>",
     filter: (t: Torrent) => t.labels?.length === 0,
     icon: StatusIcons.Label,
 };
@@ -575,7 +575,7 @@ export const Filters = React.memo(function Filters({ torrents, currentFilters, s
                 </Menu.Item>
             </MemoSectionsContextMenu>
             {sections[sectionsMap.Status].visible && <div style={{ order: sectionsMap.Status }}>
-                <Divider mx="sm" label="Status" labelPosition="center" />
+                <Divider mx="sm" label="Статус" labelPosition="center" />
                 {statusFilters.map((f) =>
                     (f.required === true || statusFiltersVisibility[f.name]) && <FilterRow key={`status-${f.name}`}
                         id={`status-${f.name}`} filter={f}
@@ -583,13 +583,13 @@ export const Filters = React.memo(function Filters({ torrents, currentFilters, s
                         currentFilters={currentFilters} setCurrentFilters={setCurrentFilters} />)}
             </div>}
             {sections[sectionsMap.Directories].visible && <div style={{ order: sectionsMap.Directories }}>
-                <Divider mx="sm" mt="md" label="Directories" labelPosition="center" />
+                <Divider mx="sm" mt="md" label="Папки" labelPosition="center" />
                 {dirs.map((d) =>
                     <DirFilterRow key={`dir-${d.path}`} id={`dir-${d.path}`}
                         dir={d} expandedReducer={expandedReducer} {...{ torrents, currentFilters, setCurrentFilters }} />)}
             </div>}
             {sections[sectionsMap.Labels].visible && <div style={{ order: sectionsMap.Labels }}>
-                <Divider mx="sm" mt="md" label="Labels" labelPosition="center" />
+                <Divider mx="sm" mt="md" label="Метки" labelPosition="center" />
                 <FilterRow
                     id="nolabels" filter={noLabelsFilter}
                     count={torrents.filter(noLabelsFilter.filter).length}
@@ -600,7 +600,7 @@ export const Filters = React.memo(function Filters({ torrents, currentFilters, s
                         currentFilters={currentFilters} setCurrentFilters={setCurrentFilters} />)}
             </div>}
             {sections[sectionsMap.Trackers].visible && <div style={{ order: sectionsMap.Trackers }}>
-                <Divider mx="sm" mt="md" label="Trackers" labelPosition="center" />
+                <Divider mx="sm" mt="md" label="Трекеры" labelPosition="center" />
                 {Object.keys(trackers).sort().map((tracker) =>
                     <TrackerFilterRow key={`trackers-${tracker}`} tracker={tracker}
                         count={trackers[tracker]}

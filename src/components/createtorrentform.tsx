@@ -160,7 +160,7 @@ export default function CreateTorrentForm() {
 
     const onBrowseFile = useCallback(() => {
         dialogOpen({
-            title: "Select file",
+            title: "Выберите файл",
             defaultPath: form.values.path === "" ? undefined : form.values.path,
             multiple: false,
         }).then(setPathAndCalculate).catch(console.error);
@@ -168,7 +168,7 @@ export default function CreateTorrentForm() {
 
     const onBrowseDirectory = useCallback(() => {
         dialogOpen({
-            title: "Select directory",
+            title: "Выберите папку",
             defaultPath: form.values.path === "" ? undefined : form.values.path,
             directory: true,
         }).then(setPathAndCalculate).catch(console.error);
@@ -219,10 +219,10 @@ export default function CreateTorrentForm() {
 
     const onSave = useCallback(() => {
         dialogSave({
-            title: "Save torrent file",
+            title: "Сохранить торрент файл",
             defaultPath: form.values.name,
             filters: [{
-                name: "Torrent",
+                name: "Торрент",
                 extensions: ["torrent"],
             }],
         }).then((path) => {
@@ -248,7 +248,7 @@ export default function CreateTorrentForm() {
         <Flex direction="column" h="100%" w="100%" p="lg" gap="lg">
             <Group align="flex-end">
                 <TextInput
-                    label={"Select file or directory"}
+                    label={"Выберите файл или папку"}
                     {...form.getInputProps("path")}
                     styles={{ root: { flexGrow: 1 } }}
                     readOnly
@@ -257,7 +257,7 @@ export default function CreateTorrentForm() {
                 <Button onClick={onBrowseDirectory} disabled={browseDisabled}>Directory</Button>
             </Group>
             <TextInput
-                label={"Torrent name"}
+                label={"Имя торрента"}
                 {...form.getInputProps("name")}
                 autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" />
             <Text fz="sm">Piece size</Text>
@@ -274,14 +274,14 @@ export default function CreateTorrentForm() {
                 value={Math.log2(form.values.pieceLength)}
                 onChange={(value) => { form.setFieldValue("pieceLength", 2 ** value); }} />
             <TextInput
-                label={"Comment"}
+                label={"Комментарий"}
                 {...form.getInputProps("comment")} />
             <TextInput
-                label={"Source (leave empty unless required by a private tracker)"}
+                label={"Источник (оставьте пустым, если трекер этого не требует)"}
                 {...form.getInputProps("source")}
                 autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" />
             <Checkbox
-                label="Private torrent"
+                label="Приватный торрент"
                 {...form.getInputProps("private", { type: "checkbox" })} />
             <Group align="flex-end">
                 <Box sx={{ flexGrow: 1 }}>Tracker list, one per line, empty line between tiers</Box>
@@ -293,7 +293,7 @@ export default function CreateTorrentForm() {
                 onChange={(e) => { form.setFieldValue("announceList", e.target.value.split("\n")); }} />
             <Textarea
                 styles={textAreaStyles}
-                label="Web seed URLs, one per line"
+                label="Web seed URLs, один на строку"
                 value={form.values.urlList.join("\n")}
                 onChange={(e) => { form.setFieldValue("urlList", e.target.value.split("\n")); }} />
             <Box h="1.5rem">

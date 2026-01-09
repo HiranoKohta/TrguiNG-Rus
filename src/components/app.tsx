@@ -147,7 +147,7 @@ export default function TauriApp() {
                     <CreateTorrentButton />
                     <ActionIcon
                         size="lg" variant="default" my="auto"
-                        title="Configure servers"
+                        title="Нвстройка сервера"
                         onClick={serverConfigHandlers.open}>
                         <Icon.GearFill size="1.1rem" />
                     </ActionIcon>
@@ -162,14 +162,14 @@ export default function TauriApp() {
                                     <ToolbarButton title={`Create torrent (${modKeyString()} + T)`} onClick={onCreateTorrent}>
                                         <Icon.Stars size="1.5rem" />
                                     </ToolbarButton>
-                                    <ToolbarButton title="Configure servers" onClick={serverConfigHandlers.open}>
+                                    <ToolbarButton title="Настройка сервера" onClick={serverConfigHandlers.open}>
                                         <Icon.GearFill size="1.5rem" />
                                     </ToolbarButton>
                                     {tabsRef.current?.getOpenTabs() !== undefined && tabsRef.current?.getOpenTabs()?.length > 1 &&
                                         <Menu shadow="md" width="12rem" withinPortal returnFocus
                                             middlewares={{ shift: true, flip: true }}>
                                             <Menu.Target>
-                                                <ToolbarButton title="Switch server">
+                                                <ToolbarButton title="Переключить сервер">
                                                     <Icon.Diagram2 size="1.5rem" />
                                                 </ToolbarButton>
                                             </Menu.Target>

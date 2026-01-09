@@ -45,15 +45,15 @@ function DownloadBar(props: { torrent: Torrent }) {
     let prefix = "";
     let percent = props.torrent.percentDone as number;
     if (props.torrent.status === Status.verifying) {
-        prefix = "Verified";
+        prefix = "Проверено";
         percent = props.torrent.recheckProgress;
     } else if (props.torrent.status === Status.downloading && props.torrent.pieceCount === 0) {
-        prefix = "Downloading metadata";
+        prefix = "Загрузка метаданных";
         percent = props.torrent.metadataPercentComplete;
     } else if (props.torrent.status === Status.stopped) {
-        prefix = "Stopped";
+        prefix = "Остановлено";
     } else {
-        prefix = "Downloaded";
+        prefix = "Загружено";
     }
 
     const config = useContext(ConfigContext);
@@ -156,24 +156,24 @@ function TransferTable(props: { torrent: Torrent }) {
     return (
         <Container fluid>
             <Grid ref={ref} my="sm" sx={{ maxWidth: "100em" }} columns={rect.width > 850 ? 3 : 1}>
-                <DetailItem name="Status:"><StatusField {...props} fieldName="status" /></DetailItem>
-                <DetailItem name="Error:">{props.torrent.cachedError}</DetailItem>
-                <DetailItem name="Remaining:">{`${secondsToHumanReadableStr(props.torrent.eta)} (${bytesToHumanReadableStr(props.torrent.leftUntilDone)})`}</DetailItem>
-                <DetailItem name="Downloaded:">{bytesToHumanReadableStr(props.torrent.downloadedEver)}</DetailItem>
-                <DetailItem name="Uploaded:">{bytesToHumanReadableStr(props.torrent.uploadedEver)}</DetailItem>
-                <DetailItem name="Wasted:"><Wasted {...props} /></DetailItem>
-                <DetailItem name="Download speed:"><DownloadSpeed {...props} /></DetailItem>
-                <DetailItem name="Upload speed:">{`${bytesToHumanReadableStr(props.torrent.rateUpload)}/s`}</DetailItem>
-                <DetailItem name="Share ratio:">{shareRatio}</DetailItem>
-                <DetailItem name="Download limit:"><SpeedLimit {...props} field="download" /></DetailItem>
-                <DetailItem name="Upload limit:"><SpeedLimit {...props} field="upload" /></DetailItem>
-                <DetailItem name="Bandwidth group:">{props.torrent.group}</DetailItem>
-                <DetailItem name="Seeds:"><Seeds {...props} /></DetailItem>
-                <DetailItem name="Peers:"><Peers {...props} /></DetailItem>
-                <DetailItem name="Max peers:">{props.torrent.maxConnectedPeers}</DetailItem>
-                <DetailItem name="Tracker:"><TrackerField {...props} fieldName="trackerStats" /></DetailItem>
-                <DetailItem name="Tracker update on:"><TrackerUpdate {...props} /></DetailItem>
-                <DetailItem name="Last active:"><DateField {...props} fieldName="activityDate" /></DetailItem>
+                <DetailItem name="Статус:"><StatusField {...props} fieldName="status" /></DetailItem>
+                <DetailItem name="Ошибка:">{props.torrent.cachedError}</DetailItem>
+                <DetailItem name="Осталось:">{`${secondsToHumanReadableStr(props.torrent.eta)} (${bytesToHumanReadableStr(props.torrent.leftUntilDone)})`}</DetailItem>
+                <DetailItem name="Загружено:">{bytesToHumanReadableStr(props.torrent.downloadedEver)}</DetailItem>
+                <DetailItem name="Роздано:">{bytesToHumanReadableStr(props.torrent.uploadedEver)}</DetailItem>
+                <DetailItem name="Ожидание:"><Wasted {...props} /></DetailItem>
+                <DetailItem name="Скорость загрузки:"><DownloadSpeed {...props} /></DetailItem>
+                <DetailItem name="Скорость раздачи:">{`${bytesToHumanReadableStr(props.torrent.rateUpload)}/s`}</DetailItem>
+                <DetailItem name="Рейтинг раздачи:">{shareRatio}</DetailItem>
+                <DetailItem name="Лимит загрузки:"><SpeedLimit {...props} field="download" /></DetailItem>
+                <DetailItem name="Лимит раздачи:"><SpeedLimit {...props} field="upload" /></DetailItem>
+                <DetailItem name="Ограничение:">{props.torrent.group}</DetailItem>
+                <DetailItem name="Сиды:"><Seeds {...props} /></DetailItem>
+                <DetailItem name="Пиры:"><Peers {...props} /></DetailItem>
+                <DetailItem name="Максимум пиров:">{props.torrent.maxConnectedPeers}</DetailItem>
+                <DetailItem name="Трекер:"><TrackerField {...props} fieldName="trackerStats" /></DetailItem>
+                <DetailItem name="Обновление трекера:"><TrackerUpdate {...props} /></DetailItem>
+                <DetailItem name="Последняя активность:"><DateField {...props} fieldName="activityDate" /></DetailItem>
             </Grid>
         </Container>
     );

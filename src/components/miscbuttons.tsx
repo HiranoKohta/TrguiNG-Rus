@@ -39,7 +39,7 @@ export function ColorSchemeToggle(props: { sz?: string, btn?: MantineNumberSize 
             variant="default"
             size={props.btn}
             onClick={() => { toggleColorScheme(); }}
-            title={`Toggle color scheme (${modKeyString()} + U)`}
+            title={`Переключить тему (${modKeyString()} + U)`}
             my="auto"
         >
             {dark
@@ -58,7 +58,7 @@ export function ShowVersion(props: { sz?: string, btn?: MantineNumberSize }) {
             <ActionIcon
                 size={props.btn}
                 onClick={openVersionModal}
-                title="Show version information"
+                title="Информация о версии"
                 ml="auto" my="auto"
             >
                 <Icon.InfoCircle size={props.sz} />
@@ -79,7 +79,7 @@ export function FontSizeToggle() {
             variant="default"
             size="lg"
             onClick={() => { toggle(); }}
-            title={`Toggle font size (${modKeyString()} + =)`}
+            title={`Переключить размер шрифта (${modKeyString()} + =)`}
             my="auto"
         >
             <FontSizeIcon width="1.1rem" height="1.1rem" fill="currentColor" />
