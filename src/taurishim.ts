@@ -96,7 +96,7 @@ export async function makeCreateTorrentView() {
             visible: true,
             center: true,
             maximizable: false,
-            title: "Create torrent",
+            title: "Создать торрент",
         });
         await webview.once("tauri://error", (e) => {
             console.log("Webview error", e);
@@ -145,10 +145,10 @@ export function copyToClipboard(text: string) {
 export async function saveJsonFile(contents: string, filename: string) {
     if (fs !== undefined) {
         dialogSave({
-            title: "Save interface settings",
+            title: "Сохранить настройки интерфейса",
             defaultPath: filename,
             filters: [{
-                name: "JSON",
+                name: "JSON файл",
                 extensions: ["json"],
             }],
         }).then((path) => {
@@ -170,9 +170,9 @@ export async function loadJsonFile(): Promise<string> {
     if (fs !== undefined) {
         return await new Promise((resolve, reject) => {
             dialogOpen({
-                title: "Select interface settings file",
+                title: "Выберите файл настроек интерфейса",
                 filters: [{
-                    name: "JSON",
+                    name: "JSON файл",
                     extensions: ["json"],
                 }],
             }).then((path) => {
