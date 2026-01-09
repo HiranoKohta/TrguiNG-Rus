@@ -41,21 +41,21 @@ interface TableField {
 }
 
 const AllFields: TableField[] = [
-    { name: "address", label: "Address" },
-    { name: "port", label: "Port" },
-    { name: "clientName", label: "Client" },
-    { name: "flagStr", label: "Flags" },
-    { name: "progress", label: "Have", component: PercentField },
-    { name: "rateToPeer", label: "Up speed", component: ByteRateField },
-    { name: "rateToClient", label: "Down speed", component: ByteRateField },
-    { name: "cachedEncrypted", label: "Encrypted" },
-    { name: "cachedFrom", label: "From" },
-    { name: "cachedConnection", label: "Connection" },
-    { name: "cachedProtocol", label: "Protocol" },
-    { name: "cachedStatus", label: "Status" },
+    { name: "address", label: "IP aдрес" },
+    { name: "port", label: "Порт" },
+    { name: "clientName", label: "Клиент" },
+    { name: "flagStr", label: "Флаги" },
+    { name: "progress", label: "В наличии", component: PercentField },
+    { name: "rateToPeer", label: "Скорость раздачи", component: ByteRateField },
+    { name: "rateToClient", label: "Скорость загрузки", component: ByteRateField },
+    { name: "cachedEncrypted", label: "Шифрование" },
+    { name: "cachedFrom", label: "Источник" },
+    { name: "cachedConnection", label: "Соединение" },
+    { name: "cachedProtocol", label: "Протокол" },
+    { name: "cachedStatus", label: "Статус" },
 ];
 
-if (TAURI) AllFields.splice(1, 0, { name: "cachedCountryName", label: "Country", columnId: "country", component: CountryField });
+if (TAURI) AllFields.splice(1, 0, { name: "cachedCountryName", label: "Страна", columnId: "country", component: CountryField });
 
 function CountryField(props: TableFieldProps) {
     const iso = props.entry.cachedCountryIso;

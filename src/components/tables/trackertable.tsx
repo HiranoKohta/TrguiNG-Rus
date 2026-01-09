@@ -38,12 +38,12 @@ interface TableField {
 }
 
 const AllFields: readonly TableField[] = [
-    { name: "announce", label: "Announce URL" },
-    { name: "announceState", label: "Status", columnId: "status", accessorFn: getTrackerAnnounceState },
-    { name: "nextAnnounceTime", label: "Next update", component: NextUpdateField },
-    { name: "seederCount", label: "Seeds", component: NumberField },
-    { name: "leecherCount", label: "Peers", component: NumberField },
-    { name: "downloadCount", label: "Downloads", component: NumberField },
+    { name: "announce", label: "URL" },
+    { name: "announceState", label: "Статус", columnId: "status", accessorFn: getTrackerAnnounceState },
+    { name: "nextAnnounceTime", label: "Следующее обновление", component: NextUpdateField },
+    { name: "seederCount", label: "Сидов", component: NumberField },
+    { name: "leecherCount", label: "Пиров", component: NumberField },
+    { name: "downloadCount", label: "Загружено", component: NumberField },
 ] as const;
 
 const Columns = AllFields.map((field): ColumnDef<TrackerStats> => {

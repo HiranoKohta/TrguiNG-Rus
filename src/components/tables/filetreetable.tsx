@@ -59,11 +59,11 @@ interface TableField {
 }
 
 const AllFields: readonly TableField[] = [
-    { name: "name", label: "Name", component: NameField, briefField: true },
-    { name: "size", label: "Size", component: ByteSizeField, briefField: true },
-    { name: "done", label: "Done", component: ByteSizeField },
-    { name: "percent", label: "Percent", component: PercentBarField },
-    { name: "priority", label: "Priority", component: PriorityField },
+    { name: "name", label: "Имя", component: NameField, briefField: true },
+    { name: "size", label: "Размер", component: ByteSizeField, briefField: true },
+    { name: "done", label: "Готово", component: ByteSizeField },
+    { name: "percent", label: "Процент", component: PercentBarField },
+    { name: "priority", label: "Приоритет", component: PriorityField },
 ] as const;
 
 function NameField(props: TableFieldProps) {
@@ -87,7 +87,7 @@ function NameField(props: TableFieldProps) {
             { torrentId: fileTree.torrentId, path: props.entry.fullpath, name },
             {
                 onSettled: onEnd,
-                onError: () => { notifications.show({ color: "red", message: "Failed to update file path" }); },
+                onError: () => { notifications.show({ color: "red", message: "Не удалось изменить путь файла" }); },
                 onSuccess: () => {
                     fileTree.updatePath(props.entry.fullpath, name);
                     refreshFileTree(props.treeName);
@@ -278,7 +278,7 @@ function SearchBox({ setSearchTerms }: {
         <Box>
             <TextInput ref={searchRef}
                 icon={<Icon.Search size="1rem" />}
-                rightSection={<ActionIcon onClick={onSearchClear} title="Clear">
+                rightSection={<ActionIcon onClick={onSearchClear} title="Очистить">
                     <Icon.XLg size="1rem" color={theme.colors.red[6]} />
                 </ActionIcon>}
                 placeholder="search files"
@@ -344,7 +344,7 @@ export function FileTreeTable(props: FileTreeTableProps) {
             path = pathMapFromServer(path, serverConfig);
             invoke("shell_open", { path, reveal }).catch(() => {
                 notifications.show({
-                    title: "Error opening path",
+                    title: "Ошибка при открытии пути",
                     message: path,
                     color: "red",
                 });
@@ -477,7 +477,7 @@ function FiletreeContextMenu(props: {
             {
                 onSuccess: () => {
                     notifications.show({
-                        message: "Priority updated",
+                        message: "Приоритет изменен",
                         color: "green",
                     });
                 },
@@ -503,7 +503,7 @@ function FiletreeContextMenu(props: {
             {
                 onSuccess: () => {
                     notifications.show({
-                        message: "Files updated",
+                        message: "Файлы обновлены",
                         color: "green",
                     });
                 },
@@ -525,13 +525,13 @@ function FiletreeContextMenu(props: {
                     onClick={() => { onOpen(false); }}
                     icon={<Icon.BoxArrowUpRight size="1.1rem" />}
                     disabled={props.currentRow === ""}>
-                    <Text weight="bold">Open</Text>
+                    <Text weight="bold">Открыть</Text>
                 </Menu.Item>
                 <Menu.Item
                     onClick={() => { onOpen(true); }}
                     icon={<Icon.Folder2Open size="1.1rem" />}
                     disabled={props.currentRow === ""}>
-                    <Text>Open folder</Text>
+                    <Text>Открыть папку</Text>
                 </Menu.Item>
                 <Menu.Divider />
             </>}
@@ -539,54 +539,54 @@ function FiletreeContextMenu(props: {
                 onClick={() => { setPriority("priority-high"); }}
                 icon={<Icon.CircleFill color="tomato" size="1.1rem" />}
                 disabled={props.selected.length === 0}>
-                High priority
+                Высокий приоритет
             </Menu.Item>
             <Menu.Item
                 onClick={() => { setPriority("priority-normal"); }}
                 icon={<Icon.CircleFill color="seagreen" size="1.1rem" />}
                 disabled={props.selected.length === 0}>
-                Normal priority
+                Обычный приоритет
             </Menu.Item>
             <Menu.Item
                 onClick={() => { setPriority("priority-low"); }}
                 icon={<Icon.CircleFill color="gold" size="1.1rem" />}
                 disabled={props.selected.length === 0}>
-                Low priority
+                Низкий приоритет
             </Menu.Item>
             <Menu.Divider />
             <Menu.Item
                 onClick={() => { setWanted(true); }}
                 icon={<Checkbox checked readOnly />}
                 disabled={props.selected.length === 0}>
-                Set wanted
+                Включить все
             </Menu.Item>
             <Menu.Item
                 onClick={() => { setWanted(false); }}
                 icon={<Checkbox readOnly />}
                 disabled={props.selected.length === 0}>
-                Set unwanted
+                Выключить все
             </Menu.Item>
             <Menu.Divider />
             <Menu.Item
                 onClick={() => { props.setExpanded?.(true); }}
                 icon={<Icon.PlusSquare size="1.1rem" />}>
-                Expand all
+                Развернуть все
             </Menu.Item>
             <Menu.Item
                 onClick={() => { props.setExpanded?.(false); }}
                 icon={<Icon.DashSquare size="1.1rem" />}>
-                Collapse all
+                Свернуть все
             </Menu.Item>
             <Menu.Divider />
             <Menu.Item
                 onClick={props.toggleFileSearchBox}
                 icon={<Icon.Search size="1.1rem" />}>
-                Toggle search
+                Переключить поиск
             </Menu.Item>
             <Menu.Item
                 onClick={toggleFlatFileTree}
                 icon={<Checkbox checked={!flatFileTree} readOnly />}>
-                Show as tree
+                Деревовидный вид
             </Menu.Item>
         </ContextMenu >
     );
